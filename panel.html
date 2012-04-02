@@ -1,0 +1,70 @@
+<body>
+    <style>
+        body { font-size: 11px; font-family: helvetica,sans-serif;
+            background: #D6DDE5; }
+        .err { color: red; font-size: 14px; }
+        table { background: #eee;
+            min-width: 60%; font-size: 12px; border: 1px solid #aaa; }
+        .hid { display: none; }
+        h1, h2 { margin-bottom: 1px; font-size: 12px;
+            text-shadow: 0 1px 1px #fff; }
+        h1 { margin-bottom: 5px; font-size: 13px; }
+        th { text-align: left; color: #777; text-shadow: 0 1px 1px #fff;
+            padding-right: 10px;}
+        td { padding: 2px; }
+        table tbody { background: #fff; }
+        #savedlist tr a { display: none; }
+        #savedlist tr.pending a { display: inline; }
+        td:focus { background: #eef; }
+        a { color: blue; }
+        .del { color: red; }
+        label {-webkit-user-select: none; }
+        .but { text-decoration: none; margin-right: 10px; }
+        .but:hover { text-decoration: underline; }
+        #saved { opacity: 0; -webkit-transition: opacity 0.3s ease-out; }
+        p.author { position:fixed; bottom:2px; right: 5px; color: #888;
+            text-align: right;}
+        p.author a { color: #888; }
+    </style>
+
+
+    <h1>Save CSS and JS</h1>
+
+    <p id="err" class="err hid"><b>Error saving file: </b>
+        <span></span></p>
+
+        <h2>Saved Files: &nbsp; <a href="#" class="hid but del">Discard All Changes</a></h2>
+
+    <table>
+        <thead>
+            <tr><th>URL</th><th>Local path</th><th>Size</th></tr>
+
+            <tr id="trsaved" class="hid"><td>url</td><td>dest</td><td>bytes</td><td>ago</td><td><a class="save but" href="#">Save N changes</a></td></tr>
+
+        </thead>
+        <tbody id="savedlist">
+        </tbody>
+    </table>
+
+    <h2>Mappings: &nbsp;
+        <a href="#" class="but" id="addnew">Create</a>
+        <a href="#" class="but" id="save">Save</a> <span id="saved">Saved!</span></h2>
+
+    <table>
+        <thead>
+            <tr><th>URL prefix</th><th>Local folder</th><th></th></tr>
+
+            <tr id="newtr" class="hid"><td contentEditable="true">URL</td><td contentEditable="true">/Users/x/</td><td><a class="del but" href="#">Delete</a></td></tr>
+        </thead>
+
+        <tbody id="rules">
+        </tbody>
+    </table>
+
+    <p><label><input id="autosave" type="checkbox" /> Save files automatically when CSS or JS is changed</label></p>
+
+    <p class="author">Developed by<br/>Tomi Mickelsson</p>
+
+</body>
+<script src="panel.js" type="text/javascript"></script>
+
