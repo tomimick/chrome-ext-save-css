@@ -25,7 +25,7 @@ class MyServer(BaseHTTPRequestHandler):
 
         # save file
         try:
-            f = open(fpath, "w")
+            f = open(fpath, "wb")
             f.write(body)
             f.close()
         except Exception, e:
