@@ -12,6 +12,9 @@ function uploadToExternalServer(serverurl, type, origurl, fpath, body, forced) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', serverurl, true);
 
+    // remove possible query string
+    fpath = fpath.split("?")[0];
+
     xhr.setRequestHeader("X-origtype", type);
     xhr.setRequestHeader("X-origurl", origurl);
     xhr.setRequestHeader("X-filepath", fpath);

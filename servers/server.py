@@ -23,19 +23,31 @@ class MyServer(BaseHTTPRequestHandler):
 
         reply = "OK"
 
-        # save file
-        try:
-            f = open(fpath, "wb")
-            f.write(body)
-            f.close()
-        except Exception, e:
-            print e
-            reply = "Server couldn't save "+fpath
+        # optional security: check that path is under given folder
+        ROOT = ""
+        if ROOT and not fpath.startswith(ROOT):
+            reply = "access denied: " + fpath
+        else:
+            # save file
+            try:
+                f = open(fpath, "wb")
+                f.write(body)
+                f.close()
+            except Exception, e:
+                print e
+                reply = "Server couldn't save "+fpath
 
         # return reply
         self.send_response(200)
         self.end_headers()
         self.wfile.write(reply)
+
+
+# optional security: chroot this script to a folder, run with
+#   "sudo python server.py"
+# (remember to adjust your url mappings in the extension too)
+# import os
+# os.chroot("/Users/myusername/")
 
 # start http server
 server = HTTPServer(('localhost', 8080), MyServer)

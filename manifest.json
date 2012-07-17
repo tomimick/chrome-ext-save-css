@@ -1,7 +1,8 @@
 {
   "name": "Save CSS",
-  "version": "1.0",
+  "version": "1.0.2",
   "description": "Save your CSS and JS modifications in Devtools automatically to local disk.",
+  "manifest_version": 2,
   "permissions": [
     "http://*/*",
     "https://*/*"
@@ -9,7 +10,7 @@
   "icons": { "16": "icon16.png",
              "128": "icon128.png" },
   "devtools_page": "devtools.html",
-  "background_page": "bg.html",
+  "background": { "scripts" : ["bg.js"]},
   "minimum_chrome_version": "18"
 }
 

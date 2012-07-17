@@ -34,11 +34,13 @@ function saveMappings() {
     }
     localStorage.mappings = JSON.stringify(list);
 
+    /*
     // flash message
     elem("saved").style.opacity = 1;
     setTimeout(function(){
         elem("saved").style.opacity = 0;
     }, 500);
+    */
 }
 
 // populate ui from localStorage
@@ -149,13 +151,14 @@ elem("rules").addEventListener('click', function(e) {
         var tr = t.parentNode.parentNode;
         tr.parentNode.removeChild(tr);
         e.preventDefault();
+
+        saveMappings();
     }
 }, false);
 
-// save all rules
-elem("save").addEventListener('click', function(e) {
+// save all rules on focusout event
+elem("rules").addEventListener('focusout', function(e) {
     saveMappings();
-    loadMappings();
 }, false);
 
 
