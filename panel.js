@@ -9,6 +9,10 @@ function elem(elem) {
 }
 // dump debug
 function deb(val) {
+    return;
+
+    // XXX: something fishy below: broke on latest Chrome!
+
     if (window.chrome) {
         var d = {"deb":val};
         chrome.extension.sendRequest(d, function(response) {});

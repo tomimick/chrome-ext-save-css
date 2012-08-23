@@ -1,6 +1,6 @@
 {
   "name": "Save CSS",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Save your CSS and JS modifications in Devtools automatically to local disk.",
   "manifest_version": 2,
   "permissions": [
