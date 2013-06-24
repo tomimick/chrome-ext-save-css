@@ -7,7 +7,12 @@
 # Author: Tomi.Mickelsson@iki.fi
 #   30.10.2011 - Created
 
-from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+try:
+    # python 2.x
+    from BaseHTTPServer import HTTPServer, BaseHTTPRequestHandler
+except:
+    # python 3.x
+    from http.server import HTTPServer, BaseHTTPRequestHandler
 
 class MyServer(BaseHTTPRequestHandler):
 
@@ -19,7 +24,7 @@ class MyServer(BaseHTTPRequestHandler):
         fpath = hd.get("X-filepath")
         bodylen = int(hd['content-length'])
         body    = self.rfile.read(bodylen)
-        print url, " ->", fpath, len(body)
+        print (url, " ->", fpath, len(body))
 
         reply = "OK"
 
@@ -33,14 +38,14 @@ class MyServer(BaseHTTPRequestHandler):
                 f = open(fpath, "wb")
                 f.write(body)
                 f.close()
-            except Exception, e:
-                print e
+            except Exception as e:
+                print (e)
                 reply = "Server couldn't save "+fpath
 
         # return reply
         self.send_response(200)
         self.end_headers()
-        self.wfile.write(reply)
+        self.wfile.write(reply.encode('utf-8'))
 
 
 # optional security: chroot this script to a folder, run with
@@ -51,6 +56,6 @@ class MyServer(BaseHTTPRequestHandler):
 
 # start http server
 server = HTTPServer(('localhost', 8080), MyServer)
-print "Server running in port 8080..."
+print ("Server running in port 8080...")
 server.serve_forever()
 
